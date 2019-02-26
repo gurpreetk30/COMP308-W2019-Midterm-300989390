@@ -27,9 +27,16 @@ router.get('/', (req, res, next) => {
 
 //  GET the Book Details page in order to add a new Book
 router.get('/add', (req, res, next) => {
-
-  res.render('books/add', {
-    title :"Add a new book"
+  let newBook = book({
+    Title: "",
+    Description: "",
+    Price: "",
+    Author: "",
+    Genre: ""
+  });
+  res.render('books/details', {
+    title :"Add a new book",
+    books: newBook
 });
 
    
@@ -76,7 +83,7 @@ router.get('/details/:id', (req, res, next) => {
       else{
           //show edit view
 
-          res.render('books/edit',{
+          res.render('books/details',{
               title:"Edit book",
               books: bookObject
           });
